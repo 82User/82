@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	
+<struts>
+	<package name="hello" namespace="/hahaha" extends="struts-default">
+		<action name="hello" class="hello.HelloWorldAction">
+			<result name="success">/result.jsp</result>
+		</action>
+	</package>
+	
+	<package name="hello1" namespace="/hello1" extends="struts-default">
+		<action name="hello1" class="hello1.action.HelloWorld">
+			<result name="success">/hello1/result.jsp</result>
+		</action>
+	</package>
+	
+	<package name="hello2" namespace="/hello2" extends="struts-default">
+		<action name="hello2" class="hello2.action.HelloWorld">
+			<interceptor-ref name="params"></interceptor-ref>
+			<result name="success">/hello2/result.jsp</result>
+			<result name="input">/hello2/hello.jsp</result>
+		</action>
+	</package>
+	
+	<package name="struts2" extends="struts-default">
+		<action name="user" class="login.action.UserAction">
+			<result>/form1/save_ok.jsp</result>
+			<result name="error">/form1/error.jsp</result>
+		</action>
+		
+		<action name="user2" class="login.action.UserAction2">
+			<result>/form1/save_ok2.jsp</result>
+			<result name="error">/form1/error.jsp</result>
+		</action>
+		
+		<action name="user3" class="login.action.UserAction3">
+			<interceptor-ref name="prepare"/>
+			<interceptor-ref name="modelDriven"/>
+			<interceptor-ref name="params"/>
+			<result>/form1/save_ok2.jsp</result>
+			<result name="error">/form1/error.jsp</result>
+		</action>
+	</package>
+	
+	<package name="struts3" extends="struts-default">
+		<interceptors>
+			<interceptor name="mytimer" class="interceptor.Timer"/>
+		</interceptors>
+		
+		<action name="add" class="interceptor1.action.SumAction">
+			<param name="num1">9</param>
+			<param name="num2">8</param>
+			<interceptor-ref name="mytimer"/>
+			<interceptor-ref name="prepare"/>
+			<interceptor-ref name="modelDriven"/>
+			<interceptor-ref name="staticParams"/>
+			<interceptor-ref name="params"/>
+			<result>/interceptor/result.jsp</result>
+		</action>
+		
+		<action name="login" class="login2.action.LoginAction">
+			<interceptor-ref name="prepare"/>
+			<interceptor-ref name="modelDriven"/>
+			<interceptor-ref name="params"/>
+			<result>/login/login_ok.jsp</result>
+			<result name="login">/login/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="struts4" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginDao" class="login3.interceptor.LoginDAOInterceptor"/>
+		</interceptors>
+		<action name="login" class="login3.action.LoginAction">
+			<interceptor-ref name="prepare"/>
+			<interceptor-ref name="modelDriven"/>
+			<interceptor-ref name="params"/>
+			<interceptor-ref name="loginDao"/>
+			<result>/login2/login_ok.jsp</result>
+			<result name="login">/login2/login.jsp</result>
+		</action>
+	</package>
+	
+	    <constant name="struts.multipart.saveDir" value="/tmp"/> 
+    <package name="struts22222" extends="struts-default">           
+      <interceptors>
+	<interceptor name="fileUploadDao" 
+class="upload.interceptor.FileUploadDAOInterceptor"/>
+</interceptors> 
+    
+      <action name="fileupload" class="upload.action.FileUploadAction">
+        <interceptor-ref name="prepare"/>
+        <interceptor-ref name="modelDriven"/>  
+        <interceptor-ref name="fileUpload"/> 
+        <interceptor-ref name="params"/>
+        <interceptor-ref name="fileUploadDao"/>            
+        <result>/upload/upload_ok.jsp</result>
+      </action>      
+    </package>
+</struts>

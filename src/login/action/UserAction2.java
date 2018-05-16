@@ -1,0 +1,37 @@
+package login.action;
+
+import login.dao.UserDAO;
+import login.model.UserInfo;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import com.opensymphony.xwork2.Action;
+
+public class UserAction2 implements Action {
+
+	UserInfo userInfo;
+	
+	Log log = LogFactory.getLog(UserAction.class);
+	public String execute() throws Exception{
+		log.info(">>>>>execute");
+		//UserInfo 객체 생성
+		UserInfo userInfo = new UserInfo();
+		log.info(">>>>>userInfo Object Create...");
+		
+		//사용자 정보 입력위해 dao 호출
+		UserDAO loginDao = new UserDAO();
+		if(loginDao.save(userInfo)) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+	
+	//UserInfo를 위한 getter, setter
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+	
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+}
