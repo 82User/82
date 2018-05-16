@@ -3,7 +3,7 @@ package hello;
 import com.opensymphony.xwork2.Action;
 
 public class HelloWorldAction implements Action {
-//asdfasdfasdfasdfasdf
+//asdfasdfasdfasdfasdfㅇㄹㅇㄹㅇㄹㅇ
 	private String name;
 	private String msg;
 	
